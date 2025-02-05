@@ -9,6 +9,24 @@ import (
 	"testing"
 )
 
+func TestNew(t *testing.T) {
+	tests := []struct {
+		name string
+	}{
+		{
+			name: "ok",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := New[int]()
+			if got.top != nil || got.mut == nil {
+				t.Errorf("New() fields not as expected in %v", got)
+			}
+		})
+	}
+}
+
 func TestStack_IsEmpty(t *testing.T) {
 	type fields struct {
 		top  *element[int]

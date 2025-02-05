@@ -27,6 +27,13 @@ type Stack[T any] struct {
 	size int
 }
 
+// New creates an empty Stack
+func New[T any]() *Stack[T] {
+	return &Stack[T]{
+		mut: &sync.Mutex{},
+	}
+}
+
 // IsEmpty returns true if the stack has no elements
 func (s *Stack[T]) IsEmpty() bool {
 	s.mut.Lock()

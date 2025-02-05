@@ -14,6 +14,7 @@ Package stack defines goroutine\-safe methods for manipulating a generic [stack]
 ## Index
 
 - [type Stack](<#Stack>)
+  - [func New\[T any\]\(\) \*Stack\[T\]](<#New>)
   - [func \(s \*Stack\[T\]\) IsEmpty\(\) bool](<#Stack[T].IsEmpty>)
   - [func \(s \*Stack\[T\]\) Peek\(\) \(value T, ok bool\)](<#Stack[T].Peek>)
   - [func \(s \*Stack\[T\]\) Pop\(\) \(value T, ok bool\)](<#Stack[T].Pop>)
@@ -31,6 +32,15 @@ type Stack[T any] struct {
     // contains filtered or unexported fields
 }
 ```
+
+<a name="New"></a>
+### func New
+
+```go
+func New[T any]() *Stack[T]
+```
+
+New creates an empty Stack
 
 <a name="Stack[T].IsEmpty"></a>
 ### func \(\*Stack\[T\]\) IsEmpty
