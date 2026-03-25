@@ -11,14 +11,17 @@ Package stack defines goroutine\-safe methods for manipulating a generic [stack]
  
 - import path is now suffixed by v2
 - an additional import is required to choose a Stack implementation:
-  - github.com/bruceesmith/stack/v2/mutex for the mutex implementation
-  - github.com/bruceesmith/stack/v2/rendezvous for the rendezvous implementation
-- Stack variables continue to have type *stack.Stack[T]
-- creation of a new Stack requires either mutex.New or rendezvous.New instead of stack.New
+  - `github.com/bruceesmith/stack/v2/mutex` for the mutex implementation
+  - `github.com/bruceesmith/stack/v2/rendezvous` for the rendezvous implementation
+- Stack variables continue to have type `*stack.Stack[T]`
+- creation of a new Stack requires either `mutex.New` or `rendezvous.New` instead of `stack.New` 
+- `rendezvous.New` takes a `context.Context` argument whereas `mutex.New` does not
 
 ## Upgrading to v2
 
-Version 2.0.0 is a major version bump to comply with Go module standards. While the API remains identical to v1, you must update your import paths to include the /v2 suffix.
+Version 2.0.0 is a major version bump to add an alternate stack implementation. While the API for every stack function
+remains identical to v1, the signature of `rendezvous.New()` differs from that of `mutex.New()`, and you must update your
+import paths to include the /v2 suffix, and add a second import path to choose the desired implementation.
 
 1. Update Import Paths
 
@@ -48,6 +51,7 @@ Version 2.0.0 is a major version bump to comply with Go module standards. While 
 
 3. Summary of Changes
 
-    Breaking Changes: Import paths however the API signatures are identical
-    New Features: Two alternate implementations - mutex-based and rendezvous-based
-    Requirement: Go 1.26
+    * Breaking Changes: Import paths and New() function signatures, however the API signatures for stack operations are 
+    identical
+    * New Features: Two alternate implementations - mutex-based and rendezvous-based
+    * Requirement: Go 1.26

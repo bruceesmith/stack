@@ -15,5 +15,6 @@ func Example() {
 
 	s1.Push(1)
 	s2.Push(2)
-	fmt.Println("S1 size", s1.Size(), "s2 size", s2.Size())
+	fmt.Println("s1 size", s1.Size(), "s2 size", s2.Size())
+	// Output: s1 size 1 s2 size 1
 }
