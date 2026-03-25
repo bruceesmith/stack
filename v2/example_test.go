@@ -11,7 +11,10 @@ import (
 
 func Example() {
 	var s1 stack.Stack[int] = mutex.New[int]()
-	var s2 stack.Stack[int] = rendezvous.New[int](context.Background())
+
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+	var s2 stack.Stack[int] = rendezvous.New[int](ctx)
 
 	s1.Push(1)
 	s2.Push(2)
