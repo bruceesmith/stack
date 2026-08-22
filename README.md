@@ -6,7 +6,7 @@
 # stack
 
 ```go
-import "github.com/bruceesmith/stack"
+import "github.com/bruceesmith/stack/v2"
 ```
 
 Package stack defines goroutine\-safe methods for manipulating a generic [stack](<https://en.wikipedia.org/wiki/Stack_(abstract_data_type)>) data structure via the standard operations IsEmpty, Peek, Pop, Push and Size.
