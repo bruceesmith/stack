@@ -13,8 +13,7 @@ import (
 
 func TestStack_Basic(t *testing.T) {
 	t.Parallel()
-	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
+	ctx := t.Context()
 
 	s := New[int](ctx)
 
@@ -57,8 +56,7 @@ func TestStack_Basic(t *testing.T) {
 
 func TestStack_Empty(t *testing.T) {
 	t.Parallel()
-	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
+	ctx := t.Context()
 
 	s := New[string](ctx)
 
@@ -100,8 +98,7 @@ func TestStack_ContextCancellation(t *testing.T) {
 
 func TestStack_ConcurrentPushPop(t *testing.T) {
 	t.Parallel()
-	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
+	ctx := t.Context()
 
 	s := New[int](ctx)
 	numGoroutines := 50
@@ -110,10 +107,10 @@ func TestStack_ConcurrentPushPop(t *testing.T) {
 
 	// Concurrent Pushes
 	wg.Add(numGoroutines)
-	for i := 0; i < numGoroutines; i++ {
+	for range numGoroutines {
 		go func() {
 			defer wg.Done()
-			for j := 0; j < numItems; j++ {
+			for j := range numItems {
 				s.Push(j)
 			}
 		}()

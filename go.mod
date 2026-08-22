@@ -1,4 +1,4 @@
-module github.com/bruceesmith/stack/v2
+module github.com/bruceesmith/stack
 
 go 1.27
 
